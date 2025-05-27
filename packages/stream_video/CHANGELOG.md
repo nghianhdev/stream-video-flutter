@@ -1,3 +1,38 @@
+## 0.9.4
+
+* Sync version with `stream_video_flutter` 0.9.4
+
+## 0.9.3
+
+✅ Added
+* Introduced `callDurationStream` to the `Call` class. A `Stream<Duration>` that emits the current call duration.
+* Added `createdByUser` property to the `CallState` for better tracking of the initiating user.
+
+🐞 Fixed
+* Resolved an issue where participants’ tracks would briefly disappear ("blink") or change location when many participants are in the call.
+* Fixed a bug where subsequent screen sharing sessions did not end properly when terminated via the browser UI.
+
+## 0.9.2
+
+🐞 Fixed
+* Fixed issue with the user feedback collection endpoint.
+
+✅ Added
+* Added `ring`, `audio`, `video`, `screenshare`, `session` and `frameRecordings` settings to `Call.getOrCreate()` method.
+* Added `members` list parameter to `Call.getOrCreate()` method to allow assigning roles when creating a call.
+* Added `session` and `frameRecordings` settings to `Call.update()` method.
+
+## 0.9.1
+
+✅ Added
+* Introduced camera focus and zoom control features:
+  * New `Call.setZoom()` method to adjust the camera’s zoom level.
+  * New `Call.focus()` method for setting focus and exposure points on the camera.
+
+🐞 Fixed
+* [Android] Fixes the device orientation detection when screen-sharing on some Android devices. 
+* Addressed minor bugs and improved performance.
+
 ## 0.9.0
 
 ✅ Added

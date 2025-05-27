@@ -287,7 +287,6 @@ class CoordinatorClientOpenApi extends CoordinatorClient {
       final result = await _defaultApi.collectUserFeedback(
         callType,
         callId,
-        sessionId,
         input,
       );
 
@@ -558,7 +557,7 @@ class CoordinatorClientOpenApi extends CoordinatorClient {
           members: result.members.toCallMembers(),
           users: result.members.toCallUsers(),
           duration: result.duration,
-          reportingIntervalMs: result.statsOptions.reportingIntervalMs,
+          statsOptions: result.statsOptions,
           ownCapabilities: result.ownCapabilities
               .map(
                 (it) => CallPermission.fromAlias(it.value),
@@ -1179,7 +1178,6 @@ class CoordinatorClientOpenApi extends CoordinatorClient {
   Future<Result<CallMetadata>> goLive({
     required StreamCallCid callCid,
     bool? startHls,
-    bool? startRtmpBroadcasts,
     bool? startRecording,
     bool? startTranscription,
     bool? startClosedCaption,
@@ -1199,7 +1197,6 @@ class CoordinatorClientOpenApi extends CoordinatorClient {
           startRecording: startRecording,
           startTranscription: startTranscription,
           startClosedCaption: startClosedCaption,
-          startRtmpBroadcasts: startRtmpBroadcasts,
           transcriptionStorageName: transcriptionStorageName,
         ),
       );
@@ -1289,6 +1286,7 @@ class CoordinatorClientOpenApi extends CoordinatorClient {
   Future<Result<CallMetadata>> updateCall({
     required StreamCallCid callCid,
     Map<String, Object> custom = const {},
+    DateTime? startsAt,
     StreamRingSettings? ring,
     StreamAudioSettings? audio,
     StreamVideoSettings? video,
@@ -1298,6 +1296,9 @@ class CoordinatorClientOpenApi extends CoordinatorClient {
     StreamBackstageSettings? backstage,
     StreamGeofencingSettings? geofencing,
     StreamLimitsSettings? limits,
+    StreamBroadcastingSettings? broadcasting,
+    StreamSessionSettings? session,
+    StreamFrameRecordingSettings? frameRecording,
   }) async {
     try {
       final connectionResult = await _waitUntilConnected();
@@ -1309,6 +1310,8 @@ class CoordinatorClientOpenApi extends CoordinatorClient {
         callCid.type.value,
         callCid.id,
         open.UpdateCallRequest(
+          startsAt: startsAt,
+          custom: custom,
           settingsOverride: open.CallSettingsRequest(
             ring: ring?.toOpenDto(),
             audio: audio?.toOpenDto(),
@@ -1319,8 +1322,10 @@ class CoordinatorClientOpenApi extends CoordinatorClient {
             backstage: backstage?.toOpenDto(),
             geofencing: geofencing?.toOpenDto(),
             limits: limits?.toOpenDto(),
+            broadcasting: broadcasting?.toOpenDto(),
+            session: session?.toOpenDto(),
+            frameRecording: frameRecording?.toOpenDto(),
           ),
-          custom: custom,
         ),
       );
       if (result == null) {

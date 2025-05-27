@@ -278,13 +278,13 @@ class StreamVideoPushNotificationManager implements PushNotificationManager {
   Future<void> unregisterDevice() async {
     final token = await getDevicePushTokenVoIP();
     if (token != null) {
-      _client.deleteDevice(id: token);
+      await _client.deleteDevice(id: token);
       _subscriptions.cancel(_idToken);
     }
 
     final apnToken = await StreamTokenProvider.getAPNToken();
     if (apnToken != null) {
-      _client.deleteDevice(id: apnToken);
+      await _client.deleteDevice(id: apnToken);
     }
 
     await removedStoredTokens();
@@ -484,6 +484,9 @@ const _defaultPushParams = StreamVideoPushParams(
     isShowCallback: true,
     subtitle: 'Missed call',
     callbackText: 'Call back',
+  ),
+  callingNotification: NotificationParams(
+    showNotification: false,
   ),
   android: AndroidParams(
     isCustomNotification: true,

@@ -172,7 +172,6 @@ class CoordinatorClientRetry extends CoordinatorClient {
   Future<Result<CallMetadata>> goLive({
     required StreamCallCid callCid,
     bool? startHls,
-    bool? startRtmpBroadcasts,
     bool? startRecording,
     bool? startTranscription,
     bool? startClosedCaption,
@@ -182,7 +181,6 @@ class CoordinatorClientRetry extends CoordinatorClient {
       () => _delegate.goLive(
         callCid: callCid,
         startHls: startHls,
-        startRtmpBroadcasts: startRtmpBroadcasts,
         startRecording: startRecording,
         startTranscription: startTranscription,
         startClosedCaption: startClosedCaption,
@@ -654,6 +652,7 @@ class CoordinatorClientRetry extends CoordinatorClient {
   Future<Result<CallMetadata>> updateCall({
     required StreamCallCid callCid,
     Map<String, Object> custom = const {},
+    DateTime? startsAt,
     StreamRingSettings? ring,
     StreamAudioSettings? audio,
     StreamVideoSettings? video,
@@ -663,11 +662,15 @@ class CoordinatorClientRetry extends CoordinatorClient {
     StreamBackstageSettings? backstage,
     StreamGeofencingSettings? geofencing,
     StreamLimitsSettings? limits,
+    StreamBroadcastingSettings? broadcasting,
+    StreamSessionSettings? session,
+    StreamFrameRecordingSettings? frameRecording,
   }) {
     return _retryManager.execute(
       () => _delegate.updateCall(
         callCid: callCid,
         custom: custom,
+        startsAt: startsAt,
         ring: ring,
         audio: audio,
         video: video,
@@ -677,6 +680,8 @@ class CoordinatorClientRetry extends CoordinatorClient {
         backstage: backstage,
         geofencing: geofencing,
         limits: limits,
+        session: session,
+        frameRecording: frameRecording,
       ),
       (error, nextAttemptDelay) async {
         _logRetry('updateCall', error, nextAttemptDelay);

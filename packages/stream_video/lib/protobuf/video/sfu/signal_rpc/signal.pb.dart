@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: video/sfu/signal_rpc/signal.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -16,6 +16,8 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 import '../models/models.pb.dart' as $0;
 import '../models/models.pbenum.dart' as $0;
+
+export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 class StartNoiseCancellationRequest extends $pb.GeneratedMessage {
   factory StartNoiseCancellationRequest({
@@ -80,7 +82,7 @@ class StartNoiseCancellationRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasSessionId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSessionId() => clearField(1);
+  void clearSessionId() => $_clearField(1);
 }
 
 class StartNoiseCancellationResponse extends $pb.GeneratedMessage {
@@ -141,13 +143,13 @@ class StartNoiseCancellationResponse extends $pb.GeneratedMessage {
   $0.Error get error => $_getN(0);
   @$pb.TagNumber(1)
   set error($0.Error v) {
-    setField(1, v);
+    $_setField(1, v);
   }
 
   @$pb.TagNumber(1)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(1)
-  void clearError() => clearField(1);
+  void clearError() => $_clearField(1);
   @$pb.TagNumber(1)
   $0.Error ensureError() => $_ensure(0);
 }
@@ -215,7 +217,7 @@ class StopNoiseCancellationRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasSessionId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSessionId() => clearField(1);
+  void clearSessionId() => $_clearField(1);
 }
 
 class StopNoiseCancellationResponse extends $pb.GeneratedMessage {
@@ -276,13 +278,13 @@ class StopNoiseCancellationResponse extends $pb.GeneratedMessage {
   $0.Error get error => $_getN(0);
   @$pb.TagNumber(1)
   set error($0.Error v) {
-    setField(1, v);
+    $_setField(1, v);
   }
 
   @$pb.TagNumber(1)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(1)
-  void clearError() => clearField(1);
+  void clearError() => $_clearField(1);
   @$pb.TagNumber(1)
   $0.Error ensureError() => $_ensure(0);
 }
@@ -357,19 +359,19 @@ class Reconnection extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasTimeSeconds() => $_has(0);
   @$pb.TagNumber(1)
-  void clearTimeSeconds() => clearField(1);
+  void clearTimeSeconds() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $0.WebsocketReconnectStrategy get strategy => $_getN(1);
   @$pb.TagNumber(2)
   set strategy($0.WebsocketReconnectStrategy v) {
-    setField(2, v);
+    $_setField(2, v);
   }
 
   @$pb.TagNumber(2)
   $core.bool hasStrategy() => $_has(1);
   @$pb.TagNumber(2)
-  void clearStrategy() => clearField(2);
+  void clearStrategy() => $_clearField(2);
 }
 
 enum Telemetry_Data { connectionTimeSeconds, reconnection, notSet }
@@ -435,7 +437,7 @@ class Telemetry extends $pb.GeneratedMessage {
   static Telemetry? _defaultInstance;
 
   Telemetry_Data whichData() => _Telemetry_DataByTag[$_whichOneof(0)]!;
-  void clearData() => clearField($_whichOneof(0));
+  void clearData() => $_clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
   $core.double get connectionTimeSeconds => $_getN(0);
@@ -447,19 +449,19 @@ class Telemetry extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasConnectionTimeSeconds() => $_has(0);
   @$pb.TagNumber(1)
-  void clearConnectionTimeSeconds() => clearField(1);
+  void clearConnectionTimeSeconds() => $_clearField(1);
 
   @$pb.TagNumber(2)
   Reconnection get reconnection => $_getN(1);
   @$pb.TagNumber(2)
   set reconnection(Reconnection v) {
-    setField(2, v);
+    $_setField(2, v);
   }
 
   @$pb.TagNumber(2)
   $core.bool hasReconnection() => $_has(1);
   @$pb.TagNumber(2)
-  void clearReconnection() => clearField(2);
+  void clearReconnection() => $_clearField(2);
   @$pb.TagNumber(2)
   Reconnection ensureReconnection() => $_ensure(1);
 }
@@ -479,6 +481,15 @@ class SendStatsRequest extends $pb.GeneratedMessage {
     $0.AndroidState? android,
     $0.AppleState? apple,
     Telemetry? telemetry,
+    $0.RTMPIngress? rtmp,
+    @$core.Deprecated('This field is deprecated.')
+    $core.String? subscriberRtcStats,
+    @$core.Deprecated('This field is deprecated.')
+    $core.String? publisherRtcStats,
+    $core.String? rtcStats,
+    $core.Iterable<$0.PerformanceStats>? encodeStats,
+    $core.Iterable<$0.PerformanceStats>? decodeStats,
+    $core.String? unifiedSessionId,
   }) {
     final $result = create();
     if (sessionId != null) {
@@ -513,6 +524,29 @@ class SendStatsRequest extends $pb.GeneratedMessage {
     }
     if (telemetry != null) {
       $result.telemetry = telemetry;
+    }
+    if (rtmp != null) {
+      $result.rtmp = rtmp;
+    }
+    if (subscriberRtcStats != null) {
+      // ignore: deprecated_member_use_from_same_package
+      $result.subscriberRtcStats = subscriberRtcStats;
+    }
+    if (publisherRtcStats != null) {
+      // ignore: deprecated_member_use_from_same_package
+      $result.publisherRtcStats = publisherRtcStats;
+    }
+    if (rtcStats != null) {
+      $result.rtcStats = rtcStats;
+    }
+    if (encodeStats != null) {
+      $result.encodeStats.addAll(encodeStats);
+    }
+    if (decodeStats != null) {
+      $result.decodeStats.addAll(decodeStats);
+    }
+    if (unifiedSessionId != null) {
+      $result.unifiedSessionId = unifiedSessionId;
     }
     return $result;
   }
@@ -552,6 +586,18 @@ class SendStatsRequest extends $pb.GeneratedMessage {
         subBuilder: $0.AppleState.create)
     ..aOM<Telemetry>(11, _omitFieldNames ? '' : 'telemetry',
         subBuilder: Telemetry.create)
+    ..aOM<$0.RTMPIngress>(12, _omitFieldNames ? '' : 'rtmp',
+        subBuilder: $0.RTMPIngress.create)
+    ..aOS(13, _omitFieldNames ? '' : 'subscriberRtcStats')
+    ..aOS(14, _omitFieldNames ? '' : 'publisherRtcStats')
+    ..aOS(15, _omitFieldNames ? '' : 'rtcStats')
+    ..pc<$0.PerformanceStats>(
+        16, _omitFieldNames ? '' : 'encodeStats', $pb.PbFieldType.PM,
+        subBuilder: $0.PerformanceStats.create)
+    ..pc<$0.PerformanceStats>(
+        17, _omitFieldNames ? '' : 'decodeStats', $pb.PbFieldType.PM,
+        subBuilder: $0.PerformanceStats.create)
+    ..aOS(18, _omitFieldNames ? '' : 'unifiedSessionId')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -579,7 +625,7 @@ class SendStatsRequest extends $pb.GeneratedMessage {
 
   SendStatsRequest_DeviceState whichDeviceState() =>
       _SendStatsRequest_DeviceStateByTag[$_whichOneof(0)]!;
-  void clearDeviceState() => clearField($_whichOneof(0));
+  void clearDeviceState() => $_clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
   $core.String get sessionId => $_getSZ(0);
@@ -591,7 +637,7 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasSessionId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSessionId() => clearField(1);
+  void clearSessionId() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get subscriberStats => $_getSZ(1);
@@ -603,7 +649,7 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasSubscriberStats() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSubscriberStats() => clearField(2);
+  void clearSubscriberStats() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get publisherStats => $_getSZ(2);
@@ -615,7 +661,7 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.bool hasPublisherStats() => $_has(2);
   @$pb.TagNumber(3)
-  void clearPublisherStats() => clearField(3);
+  void clearPublisherStats() => $_clearField(3);
 
   @$pb.TagNumber(4)
   $core.String get webrtcVersion => $_getSZ(3);
@@ -627,7 +673,7 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.bool hasWebrtcVersion() => $_has(3);
   @$pb.TagNumber(4)
-  void clearWebrtcVersion() => clearField(4);
+  void clearWebrtcVersion() => $_clearField(4);
 
   @$pb.TagNumber(5)
   $core.String get sdk => $_getSZ(4);
@@ -639,7 +685,7 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $core.bool hasSdk() => $_has(4);
   @$pb.TagNumber(5)
-  void clearSdk() => clearField(5);
+  void clearSdk() => $_clearField(5);
 
   @$pb.TagNumber(6)
   $core.String get sdkVersion => $_getSZ(5);
@@ -651,19 +697,19 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   $core.bool hasSdkVersion() => $_has(5);
   @$pb.TagNumber(6)
-  void clearSdkVersion() => clearField(6);
+  void clearSdkVersion() => $_clearField(6);
 
   @$pb.TagNumber(7)
   $0.InputDevices get audioDevices => $_getN(6);
   @$pb.TagNumber(7)
   set audioDevices($0.InputDevices v) {
-    setField(7, v);
+    $_setField(7, v);
   }
 
   @$pb.TagNumber(7)
   $core.bool hasAudioDevices() => $_has(6);
   @$pb.TagNumber(7)
-  void clearAudioDevices() => clearField(7);
+  void clearAudioDevices() => $_clearField(7);
   @$pb.TagNumber(7)
   $0.InputDevices ensureAudioDevices() => $_ensure(6);
 
@@ -671,13 +717,13 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   $0.InputDevices get videoDevices => $_getN(7);
   @$pb.TagNumber(8)
   set videoDevices($0.InputDevices v) {
-    setField(8, v);
+    $_setField(8, v);
   }
 
   @$pb.TagNumber(8)
   $core.bool hasVideoDevices() => $_has(7);
   @$pb.TagNumber(8)
-  void clearVideoDevices() => clearField(8);
+  void clearVideoDevices() => $_clearField(8);
   @$pb.TagNumber(8)
   $0.InputDevices ensureVideoDevices() => $_ensure(7);
 
@@ -685,13 +731,13 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   $0.AndroidState get android => $_getN(8);
   @$pb.TagNumber(9)
   set android($0.AndroidState v) {
-    setField(9, v);
+    $_setField(9, v);
   }
 
   @$pb.TagNumber(9)
   $core.bool hasAndroid() => $_has(8);
   @$pb.TagNumber(9)
-  void clearAndroid() => clearField(9);
+  void clearAndroid() => $_clearField(9);
   @$pb.TagNumber(9)
   $0.AndroidState ensureAndroid() => $_ensure(8);
 
@@ -699,13 +745,13 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   $0.AppleState get apple => $_getN(9);
   @$pb.TagNumber(10)
   set apple($0.AppleState v) {
-    setField(10, v);
+    $_setField(10, v);
   }
 
   @$pb.TagNumber(10)
   $core.bool hasApple() => $_has(9);
   @$pb.TagNumber(10)
-  void clearApple() => clearField(10);
+  void clearApple() => $_clearField(10);
   @$pb.TagNumber(10)
   $0.AppleState ensureApple() => $_ensure(9);
 
@@ -713,15 +759,96 @@ class SendStatsRequest extends $pb.GeneratedMessage {
   Telemetry get telemetry => $_getN(10);
   @$pb.TagNumber(11)
   set telemetry(Telemetry v) {
-    setField(11, v);
+    $_setField(11, v);
   }
 
   @$pb.TagNumber(11)
   $core.bool hasTelemetry() => $_has(10);
   @$pb.TagNumber(11)
-  void clearTelemetry() => clearField(11);
+  void clearTelemetry() => $_clearField(11);
   @$pb.TagNumber(11)
   Telemetry ensureTelemetry() => $_ensure(10);
+
+  @$pb.TagNumber(12)
+  $0.RTMPIngress get rtmp => $_getN(11);
+  @$pb.TagNumber(12)
+  set rtmp($0.RTMPIngress v) {
+    $_setField(12, v);
+  }
+
+  @$pb.TagNumber(12)
+  $core.bool hasRtmp() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearRtmp() => $_clearField(12);
+  @$pb.TagNumber(12)
+  $0.RTMPIngress ensureRtmp() => $_ensure(11);
+
+  @$core.Deprecated('This field is deprecated.')
+  @$pb.TagNumber(13)
+  $core.String get subscriberRtcStats => $_getSZ(12);
+  @$core.Deprecated('This field is deprecated.')
+  @$pb.TagNumber(13)
+  set subscriberRtcStats($core.String v) {
+    $_setString(12, v);
+  }
+
+  @$core.Deprecated('This field is deprecated.')
+  @$pb.TagNumber(13)
+  $core.bool hasSubscriberRtcStats() => $_has(12);
+  @$core.Deprecated('This field is deprecated.')
+  @$pb.TagNumber(13)
+  void clearSubscriberRtcStats() => $_clearField(13);
+
+  @$core.Deprecated('This field is deprecated.')
+  @$pb.TagNumber(14)
+  $core.String get publisherRtcStats => $_getSZ(13);
+  @$core.Deprecated('This field is deprecated.')
+  @$pb.TagNumber(14)
+  set publisherRtcStats($core.String v) {
+    $_setString(13, v);
+  }
+
+  @$core.Deprecated('This field is deprecated.')
+  @$pb.TagNumber(14)
+  $core.bool hasPublisherRtcStats() => $_has(13);
+  @$core.Deprecated('This field is deprecated.')
+  @$pb.TagNumber(14)
+  void clearPublisherRtcStats() => $_clearField(14);
+
+  @$pb.TagNumber(15)
+  $core.String get rtcStats => $_getSZ(14);
+  @$pb.TagNumber(15)
+  set rtcStats($core.String v) {
+    $_setString(14, v);
+  }
+
+  @$pb.TagNumber(15)
+  $core.bool hasRtcStats() => $_has(14);
+  @$pb.TagNumber(15)
+  void clearRtcStats() => $_clearField(15);
+
+  /// Encode stats for the publisher
+  @$pb.TagNumber(16)
+  $pb.PbList<$0.PerformanceStats> get encodeStats => $_getList(15);
+
+  /// Decode stats for the subscriber
+  @$pb.TagNumber(17)
+  $pb.PbList<$0.PerformanceStats> get decodeStats => $_getList(16);
+
+  /// user_session id can change during reconnects, this helps us to
+  /// identify the user across reconnects and should remain consistent until the user explicitly
+  /// disconnects, is kicked or the call is ended.
+  @$pb.TagNumber(18)
+  $core.String get unifiedSessionId => $_getSZ(17);
+  @$pb.TagNumber(18)
+  set unifiedSessionId($core.String v) {
+    $_setString(17, v);
+  }
+
+  @$pb.TagNumber(18)
+  $core.bool hasUnifiedSessionId() => $_has(17);
+  @$pb.TagNumber(18)
+  void clearUnifiedSessionId() => $_clearField(18);
 }
 
 class SendStatsResponse extends $pb.GeneratedMessage {
@@ -778,13 +905,13 @@ class SendStatsResponse extends $pb.GeneratedMessage {
   $0.Error get error => $_getN(0);
   @$pb.TagNumber(1)
   set error($0.Error v) {
-    setField(1, v);
+    $_setField(1, v);
   }
 
   @$pb.TagNumber(1)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(1)
-  void clearError() => clearField(1);
+  void clearError() => $_clearField(1);
   @$pb.TagNumber(1)
   $0.Error ensureError() => $_ensure(0);
 }
@@ -856,19 +983,19 @@ class ICERestartRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasSessionId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSessionId() => clearField(1);
+  void clearSessionId() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $0.PeerType get peerType => $_getN(1);
   @$pb.TagNumber(2)
   set peerType($0.PeerType v) {
-    setField(2, v);
+    $_setField(2, v);
   }
 
   @$pb.TagNumber(2)
   $core.bool hasPeerType() => $_has(1);
   @$pb.TagNumber(2)
-  void clearPeerType() => clearField(2);
+  void clearPeerType() => $_clearField(2);
 }
 
 class ICERestartResponse extends $pb.GeneratedMessage {
@@ -925,13 +1052,13 @@ class ICERestartResponse extends $pb.GeneratedMessage {
   $0.Error get error => $_getN(0);
   @$pb.TagNumber(1)
   set error($0.Error v) {
-    setField(1, v);
+    $_setField(1, v);
   }
 
   @$pb.TagNumber(1)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(1)
-  void clearError() => clearField(1);
+  void clearError() => $_clearField(1);
   @$pb.TagNumber(1)
   $0.Error ensureError() => $_ensure(0);
 }
@@ -1004,10 +1131,10 @@ class UpdateMuteStatesRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasSessionId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSessionId() => clearField(1);
+  void clearSessionId() => $_clearField(1);
 
   @$pb.TagNumber(3)
-  $core.List<TrackMuteState> get muteStates => $_getList(1);
+  $pb.PbList<TrackMuteState> get muteStates => $_getList(1);
 }
 
 class UpdateMuteStatesResponse extends $pb.GeneratedMessage {
@@ -1066,13 +1193,13 @@ class UpdateMuteStatesResponse extends $pb.GeneratedMessage {
   $0.Error get error => $_getN(0);
   @$pb.TagNumber(4)
   set error($0.Error v) {
-    setField(4, v);
+    $_setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(4)
-  void clearError() => clearField(4);
+  void clearError() => $_clearField(4);
   @$pb.TagNumber(4)
   $0.Error ensureError() => $_ensure(0);
 }
@@ -1138,13 +1265,13 @@ class TrackMuteState extends $pb.GeneratedMessage {
   $0.TrackType get trackType => $_getN(0);
   @$pb.TagNumber(1)
   set trackType($0.TrackType v) {
-    setField(1, v);
+    $_setField(1, v);
   }
 
   @$pb.TagNumber(1)
   $core.bool hasTrackType() => $_has(0);
   @$pb.TagNumber(1)
-  void clearTrackType() => clearField(1);
+  void clearTrackType() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.bool get muted => $_getBF(1);
@@ -1156,7 +1283,7 @@ class TrackMuteState extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasMuted() => $_has(1);
   @$pb.TagNumber(2)
-  void clearMuted() => clearField(2);
+  void clearMuted() => $_clearField(2);
 }
 
 class AudioMuteChanged extends $pb.GeneratedMessage {
@@ -1218,7 +1345,7 @@ class AudioMuteChanged extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasMuted() => $_has(0);
   @$pb.TagNumber(1)
-  void clearMuted() => clearField(1);
+  void clearMuted() => $_clearField(1);
 }
 
 class VideoMuteChanged extends $pb.GeneratedMessage {
@@ -1280,7 +1407,7 @@ class VideoMuteChanged extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasMuted() => $_has(0);
   @$pb.TagNumber(2)
-  void clearMuted() => clearField(2);
+  void clearMuted() => $_clearField(2);
 }
 
 class UpdateSubscriptionsRequest extends $pb.GeneratedMessage {
@@ -1352,10 +1479,10 @@ class UpdateSubscriptionsRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasSessionId() => $_has(0);
   @$pb.TagNumber(2)
-  void clearSessionId() => clearField(2);
+  void clearSessionId() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  $core.List<TrackSubscriptionDetails> get tracks => $_getList(1);
+  $pb.PbList<TrackSubscriptionDetails> get tracks => $_getList(1);
 }
 
 class UpdateSubscriptionsResponse extends $pb.GeneratedMessage {
@@ -1416,13 +1543,13 @@ class UpdateSubscriptionsResponse extends $pb.GeneratedMessage {
   $0.Error get error => $_getN(0);
   @$pb.TagNumber(4)
   set error($0.Error v) {
-    setField(4, v);
+    $_setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(4)
-  void clearError() => clearField(4);
+  void clearError() => $_clearField(4);
   @$pb.TagNumber(4)
   $0.Error ensureError() => $_ensure(0);
 }
@@ -1507,7 +1634,7 @@ class TrackSubscriptionDetails extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUserId() => clearField(1);
+  void clearUserId() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get sessionId => $_getSZ(1);
@@ -1519,31 +1646,31 @@ class TrackSubscriptionDetails extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasSessionId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSessionId() => clearField(2);
+  void clearSessionId() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $0.TrackType get trackType => $_getN(2);
   @$pb.TagNumber(3)
   set trackType($0.TrackType v) {
-    setField(3, v);
+    $_setField(3, v);
   }
 
   @$pb.TagNumber(3)
   $core.bool hasTrackType() => $_has(2);
   @$pb.TagNumber(3)
-  void clearTrackType() => clearField(3);
+  void clearTrackType() => $_clearField(3);
 
   @$pb.TagNumber(4)
   $0.VideoDimension get dimension => $_getN(3);
   @$pb.TagNumber(4)
   set dimension($0.VideoDimension v) {
-    setField(4, v);
+    $_setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasDimension() => $_has(3);
   @$pb.TagNumber(4)
-  void clearDimension() => clearField(4);
+  void clearDimension() => $_clearField(4);
   @$pb.TagNumber(4)
   $0.VideoDimension ensureDimension() => $_ensure(3);
 }
@@ -1614,13 +1741,13 @@ class SendAnswerRequest extends $pb.GeneratedMessage {
   $0.PeerType get peerType => $_getN(0);
   @$pb.TagNumber(1)
   set peerType($0.PeerType v) {
-    setField(1, v);
+    $_setField(1, v);
   }
 
   @$pb.TagNumber(1)
   $core.bool hasPeerType() => $_has(0);
   @$pb.TagNumber(1)
-  void clearPeerType() => clearField(1);
+  void clearPeerType() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get sdp => $_getSZ(1);
@@ -1632,7 +1759,7 @@ class SendAnswerRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasSdp() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSdp() => clearField(2);
+  void clearSdp() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get sessionId => $_getSZ(2);
@@ -1644,7 +1771,7 @@ class SendAnswerRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.bool hasSessionId() => $_has(2);
   @$pb.TagNumber(3)
-  void clearSessionId() => clearField(3);
+  void clearSessionId() => $_clearField(3);
 }
 
 class SendAnswerResponse extends $pb.GeneratedMessage {
@@ -1701,13 +1828,13 @@ class SendAnswerResponse extends $pb.GeneratedMessage {
   $0.Error get error => $_getN(0);
   @$pb.TagNumber(4)
   set error($0.Error v) {
-    setField(4, v);
+    $_setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(4)
-  void clearError() => clearField(4);
+  void clearError() => $_clearField(4);
   @$pb.TagNumber(4)
   $0.Error ensureError() => $_ensure(0);
 }
@@ -1766,13 +1893,13 @@ class ICETrickleResponse extends $pb.GeneratedMessage {
   $0.Error get error => $_getN(0);
   @$pb.TagNumber(4)
   set error($0.Error v) {
-    setField(4, v);
+    $_setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(4)
-  void clearError() => clearField(4);
+  void clearError() => $_clearField(4);
   @$pb.TagNumber(4)
   $0.Error ensureError() => $_ensure(0);
 }
@@ -1848,7 +1975,7 @@ class SetPublisherRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasSdp() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSdp() => clearField(1);
+  void clearSdp() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get sessionId => $_getSZ(1);
@@ -1860,10 +1987,10 @@ class SetPublisherRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasSessionId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSessionId() => clearField(2);
+  void clearSessionId() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  $core.List<$0.TrackInfo> get tracks => $_getList(2);
+  $pb.PbList<$0.TrackInfo> get tracks => $_getList(2);
 }
 
 class SetPublisherResponse extends $pb.GeneratedMessage {
@@ -1943,7 +2070,7 @@ class SetPublisherResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasSdp() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSdp() => clearField(1);
+  void clearSdp() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get sessionId => $_getSZ(1);
@@ -1955,7 +2082,7 @@ class SetPublisherResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasSessionId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSessionId() => clearField(2);
+  void clearSessionId() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.bool get iceRestart => $_getBF(2);
@@ -1967,19 +2094,19 @@ class SetPublisherResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.bool hasIceRestart() => $_has(2);
   @$pb.TagNumber(3)
-  void clearIceRestart() => clearField(3);
+  void clearIceRestart() => $_clearField(3);
 
   @$pb.TagNumber(4)
   $0.Error get error => $_getN(3);
   @$pb.TagNumber(4)
   set error($0.Error v) {
-    setField(4, v);
+    $_setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasError() => $_has(3);
   @$pb.TagNumber(4)
-  void clearError() => clearField(4);
+  void clearError() => $_clearField(4);
   @$pb.TagNumber(4)
   $0.Error ensureError() => $_ensure(3);
 }
@@ -1988,18 +2115,26 @@ class SignalServerApi {
   $pb.RpcClient _client;
   SignalServerApi(this._client);
 
+  /// SetPublisher sends the WebRTC offer for the peer connection used to publish A/V
   $async.Future<SetPublisherResponse> setPublisher(
           $pb.ClientContext? ctx, SetPublisherRequest request) =>
       _client.invoke<SetPublisherResponse>(
           ctx, 'SignalServer', 'SetPublisher', request, SetPublisherResponse());
+
+  /// answer is sent by the client to the SFU after receiving a subscriber_offer.
   $async.Future<SendAnswerResponse> sendAnswer(
           $pb.ClientContext? ctx, SendAnswerRequest request) =>
       _client.invoke<SendAnswerResponse>(
           ctx, 'SignalServer', 'SendAnswer', request, SendAnswerResponse());
+
+  /// SendICECandidate sends an ICE candidate to the client
   $async.Future<ICETrickleResponse> iceTrickle(
           $pb.ClientContext? ctx, $0.ICETrickle request) =>
       _client.invoke<ICETrickleResponse>(
           ctx, 'SignalServer', 'IceTrickle', request, ICETrickleResponse());
+
+  /// UpdateSubscribers is used to notify the SFU about the list of video subscriptions
+  /// TODO: sync subscriptions based on this + update tracks using the dimension info sent by the user
   $async.Future<UpdateSubscriptionsResponse> updateSubscriptions(
           $pb.ClientContext? ctx, UpdateSubscriptionsRequest request) =>
       _client.invoke<UpdateSubscriptionsResponse>(ctx, 'SignalServer',

@@ -14,6 +14,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:stream_video_flutter/stream_video_flutter.dart';
 import 'package:stream_video_flutter/stream_video_flutter_l10n.dart';
 
+import '../core/model/environment.dart';
 import '../core/repos/app_preferences.dart';
 import '../di/injector.dart';
 import '../firebase_options.dart';
@@ -111,12 +112,12 @@ class _StreamDogFoodingAppContentState
     // i.e. the user is not logged in.
     if (!locator.isRegistered<StreamVideo>()) return;
 
+    // Observe call kit events.
+    _observeCallKitEvents();
     // Observes deep links.
     _observeDeepLinks();
     // Observe FCM messages.
     _observeFcmMessages();
-    // Observe call kit events.
-    _observeCallKitEvents();
   }
 
   void _tryConsumingIncomingCallFromTerminatedState() {

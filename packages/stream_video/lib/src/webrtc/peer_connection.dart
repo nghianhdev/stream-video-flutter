@@ -91,17 +91,11 @@ class StreamPeerConnection extends Disposable {
     Map<String, dynamic> mediaConstraints = const {},
   ]) async {
     try {
-      _logger.i(
-        () =>
-            '[createLocalOffer] >>> #$type; mediaConstraints: $mediaConstraints',
-      );
       final localOffer = await pc.createOffer(mediaConstraints);
       final modifiedSdp = sdpEditor.edit(localOffer.sdp?.let(Sdp.localOffer));
       final modifiedOffer = localOffer.copyWith(sdp: modifiedSdp);
-      _logger.i(
-        () => '[createLocalOffer] <<< #$type; sdp:\n"${modifiedOffer.sdp}"',
-      );
-      await pc.setLocalDescription(modifiedOffer);
+
+      await setLocalDescription(modifiedOffer);
       return Result.success(modifiedOffer);
     } catch (e, stk) {
       return Result.failure(VideoErrors.compose(e, stk));
@@ -115,16 +109,16 @@ class StreamPeerConnection extends Disposable {
     Map<String, dynamic> mediaConstraints = const {},
   ]) async {
     try {
-      _logger.i(
+      _logger.v(
         () => '[createLocalAnswer] #$type; mediaConstraints: $mediaConstraints',
       );
       final localAnswer = await pc.createAnswer(mediaConstraints);
       final modifiedSdp = sdpEditor.edit(localAnswer.sdp?.let(Sdp.localAnswer));
       final modifiedAnswer = localAnswer.copyWith(sdp: modifiedSdp);
-      _logger.i(
+      _logger.v(
         () => '[createLocalAnswer] #$type; sdp:\n${modifiedAnswer.sdp}',
       );
-      await pc.setLocalDescription(modifiedAnswer);
+      await setLocalDescription(modifiedAnswer);
       return Result.success(modifiedAnswer);
     } catch (e, stk) {
       return Result.failure(VideoErrors.compose(e, stk));
@@ -136,7 +130,7 @@ class StreamPeerConnection extends Disposable {
     String remoteOfferSdp,
   ) async {
     final modifiedSdp = sdpEditor.edit(Sdp.remoteOffer(remoteOfferSdp));
-    _logger.i(() => '[setRemoteOffer] #$type; sdp:\n$modifiedSdp');
+    _logger.v(() => '[setRemoteOffer] #$type; sdp:\n$modifiedSdp');
     return setRemoteDescription(
       rtc.RTCSessionDescription(modifiedSdp, 'offer'),
     );
@@ -147,7 +141,7 @@ class StreamPeerConnection extends Disposable {
     String remoteAnswerSdp,
   ) async {
     final modifiedSdp = sdpEditor.edit(Sdp.remoteAnswer(remoteAnswerSdp));
-    _logger.i(() => '[setRemoteAnswer] #$type; sdp:\n$modifiedSdp');
+    _logger.v(() => '[setRemoteAnswer] #$type; sdp:\n$modifiedSdp');
     return setRemoteDescription(
       rtc.RTCSessionDescription(modifiedSdp, 'answer'),
     );
@@ -163,6 +157,18 @@ class StreamPeerConnection extends Disposable {
         await pc.addCandidate(candidate);
       }
       _pendingCandidates.clear();
+      return Result.success(result);
+    } catch (e, stk) {
+      return Result.failure(VideoErrors.compose(e, stk));
+    }
+  }
+
+  //Sets the local description
+  Future<Result<void>> setLocalDescription(
+    rtc.RTCSessionDescription description,
+  ) async {
+    try {
+      final result = await pc.setLocalDescription(description);
       return Result.success(result);
     } catch (e, stk) {
       return Result.failure(VideoErrors.compose(e, stk));
@@ -252,7 +258,11 @@ class StreamPeerConnection extends Disposable {
       ..onRemoveTrack = null
       ..onIceCandidate = null
       ..onIceConnectionState = null
-      ..onRenegotiationNeeded = null;
+      ..onRenegotiationNeeded = null
+      ..onIceGatheringState = null
+      ..onSignalingState = null
+      ..onConnectionState = null
+      ..onDataChannel = null;
   }
 
   void _onAddStream(rtc.MediaStream stream) {
@@ -302,7 +312,8 @@ class StreamPeerConnection extends Disposable {
   }
 
   void _onRenegotiationNeeded() {
-    _logger.i(() => '[onRenegotiationNeeded] no args');
+    _logger.v(() => '[onRenegotiationNeeded] no args');
+
     onRenegotiationNeeded?.call(this);
   }
 

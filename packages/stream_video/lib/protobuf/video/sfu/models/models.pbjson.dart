@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: video/sfu/models/models.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -794,6 +794,27 @@ final $typed_data.Uint8List browserDescriptor = $convert.base64Decode(
     'CgdCcm93c2VyEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHdmVyc2lvbhgCIAEoCVIHdmVyc2lvbg'
     '==');
 
+@$core.Deprecated('Use rTMPIngressDescriptor instead')
+const RTMPIngress$json = {
+  '1': 'RTMPIngress',
+  '2': [
+    {'1': 'width', '3': 1, '4': 1, '5': 13, '10': 'width'},
+    {'1': 'height', '3': 2, '4': 1, '5': 13, '10': 'height'},
+    {'1': 'frame_rate', '3': 3, '4': 1, '5': 1, '10': 'frameRate'},
+    {'1': 'software', '3': 4, '4': 1, '5': 9, '10': 'software'},
+    {'1': 'version', '3': 5, '4': 1, '5': 9, '10': 'version'},
+    {'1': 'encoder', '3': 6, '4': 1, '5': 9, '10': 'encoder'},
+    {'1': 'remote_addr', '3': 7, '4': 1, '5': 9, '10': 'remoteAddr'},
+  ],
+};
+
+/// Descriptor for `RTMPIngress`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List rTMPIngressDescriptor = $convert.base64Decode(
+    'CgtSVE1QSW5ncmVzcxIUCgV3aWR0aBgBIAEoDVIFd2lkdGgSFgoGaGVpZ2h0GAIgASgNUgZoZW'
+    'lnaHQSHQoKZnJhbWVfcmF0ZRgDIAEoAVIJZnJhbWVSYXRlEhoKCHNvZnR3YXJlGAQgASgJUghz'
+    'b2Z0d2FyZRIYCgd2ZXJzaW9uGAUgASgJUgd2ZXJzaW9uEhgKB2VuY29kZXIYBiABKAlSB2VuY2'
+    '9kZXISHwoLcmVtb3RlX2FkZHIYByABKAlSCnJlbW90ZUFkZHI=');
+
 @$core.Deprecated('Use deviceDescriptor instead')
 const Device$json = {
   '1': 'Device',
@@ -950,3 +971,46 @@ final $typed_data.Uint8List appleStateDescriptor = $convert.base64Decode(
     'CgpBcHBsZVN0YXRlEk8KDXRoZXJtYWxfc3RhdGUYASABKA4yKi5zdHJlYW0udmlkZW8uc2Z1Lm'
     '1vZGVscy5BcHBsZVRoZXJtYWxTdGF0ZVIMdGhlcm1hbFN0YXRlEjgKGWlzX2xvd19wb3dlcl9t'
     'b2RlX2VuYWJsZWQYAiABKAhSFWlzTG93UG93ZXJNb2RlRW5hYmxlZA==');
+
+@$core.Deprecated('Use performanceStatsDescriptor instead')
+const PerformanceStats$json = {
+  '1': 'PerformanceStats',
+  '2': [
+    {
+      '1': 'track_type',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.stream.video.sfu.models.TrackType',
+      '10': 'trackType'
+    },
+    {
+      '1': 'codec',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.stream.video.sfu.models.Codec',
+      '10': 'codec'
+    },
+    {'1': 'avg_frame_time_ms', '3': 3, '4': 1, '5': 2, '10': 'avgFrameTimeMs'},
+    {'1': 'avg_fps', '3': 4, '4': 1, '5': 2, '10': 'avgFps'},
+    {
+      '1': 'video_dimension',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.stream.video.sfu.models.VideoDimension',
+      '10': 'videoDimension'
+    },
+    {'1': 'target_bitrate', '3': 6, '4': 1, '5': 5, '10': 'targetBitrate'},
+  ],
+};
+
+/// Descriptor for `PerformanceStats`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List performanceStatsDescriptor = $convert.base64Decode(
+    'ChBQZXJmb3JtYW5jZVN0YXRzEkEKCnRyYWNrX3R5cGUYASABKA4yIi5zdHJlYW0udmlkZW8uc2'
+    'Z1Lm1vZGVscy5UcmFja1R5cGVSCXRyYWNrVHlwZRI0CgVjb2RlYxgCIAEoCzIeLnN0cmVhbS52'
+    'aWRlby5zZnUubW9kZWxzLkNvZGVjUgVjb2RlYxIpChFhdmdfZnJhbWVfdGltZV9tcxgDIAEoAl'
+    'IOYXZnRnJhbWVUaW1lTXMSFwoHYXZnX2ZwcxgEIAEoAlIGYXZnRnBzElAKD3ZpZGVvX2RpbWVu'
+    'c2lvbhgFIAEoCzInLnN0cmVhbS52aWRlby5zZnUubW9kZWxzLlZpZGVvRGltZW5zaW9uUg52aW'
+    'Rlb0RpbWVuc2lvbhIlCg50YXJnZXRfYml0cmF0ZRgGIAEoBVINdGFyZ2V0Qml0cmF0ZQ==');
